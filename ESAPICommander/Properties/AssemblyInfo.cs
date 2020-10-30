@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ESAPICommander")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("www.sachpazidis.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("www.sachpazidis.com")]
 [assembly: AssemblyProduct("ESAPICommander")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © Dr. Ilias Sachpazidis, 2020-2021")]
+[assembly: AssemblyTrademark("ESAPICommander")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

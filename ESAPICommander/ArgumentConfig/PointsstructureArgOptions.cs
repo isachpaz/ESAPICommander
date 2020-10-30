@@ -4,7 +4,7 @@ using CommandLine.Text;
 
 namespace ESAPICommander.ArgumentConfig
 {
-    [Verb("single", HelpText = "Process single patient.")]
+    [Verb("pointsstructure", HelpText = "Export dose matrix voxel points belonging to a structure.")]
     public class PointsstructureArgOptions : CommonArgOptions
     {
         public override string ToString()
@@ -30,14 +30,14 @@ namespace ESAPICommander.ArgumentConfig
         [Option('m', "structures", Required = false, Group = "structure", HelpText = "Structure names")]
         public IEnumerable<string> Structures { get; set; }
 
-        [Usage(ApplicationAlias = "Points structure export")]
+        [Usage(ApplicationAlias = "ESAPICommander")]
         public static IEnumerable<Example> Examples
         {
             get
             {
                 return new List<Example>()
                 {
-                    new Example("Export dose voxels for a single patient",
+                    new Example("Export dose voxel points for a structure",
                         new PointsstructureArgOptions {PIZ = "1234567", Structure = "prostate gland", Plan = "plan1", Course = "C1"})
                 };
             }

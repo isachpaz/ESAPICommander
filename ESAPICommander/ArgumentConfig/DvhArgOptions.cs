@@ -4,14 +4,14 @@ using CommandLine.Text;
 
 namespace ESAPICommander.ArgumentConfig
 {
-    [Verb("dvh", HelpText = "dvh export")]
+    [Verb("dvh", HelpText = "DVH export")]
     public class DvhArgOptions
     {
         
         [Option('o', "dvhfile", Required = true, HelpText = "Output dvh file.")]
         public string DvhFile { get; set; }
 
-        [Usage(ApplicationAlias = "dvh export")]
+        [Usage(ApplicationAlias = "ESAPICommander")]
         public static IEnumerable<Example> Examples
         {
             get
