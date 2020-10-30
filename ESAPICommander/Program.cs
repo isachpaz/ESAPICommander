@@ -5,7 +5,9 @@ using CommandLine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using ESAPICommander.Commands;
 
 namespace ESAPICommander
 {
@@ -34,7 +36,10 @@ namespace ESAPICommander
 
         private static int RunDump(DumpArgOptions opts)
         {
-            throw new NotImplementedException();
+            var ed = CommandDirectorFactory.CreateDump(opts);
+            ed.Run();
+            ed.Dispose();
+            return 0;
         }
 
         private static int RunDvh(DvhArgOptions opts)
