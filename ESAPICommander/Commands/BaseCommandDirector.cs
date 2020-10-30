@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ESAPICommander.Logger;
 using ESAPICommander.Proxies;
 using VMS.TPS.Common.Model.API;
 
@@ -7,8 +8,11 @@ namespace ESAPICommander.Commands
 {
     public abstract class BaseCommandDirector : IDisposable
     {
-        protected BaseCommandDirector(IEsapiCalls esapi)
+        protected readonly ILog _log;
+
+        protected BaseCommandDirector(IEsapiCalls esapi, ILog log)
         {
+            _log = log;
             Esapi = esapi;
         }
 

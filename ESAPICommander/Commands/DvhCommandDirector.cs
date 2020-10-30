@@ -1,4 +1,5 @@
-﻿using ESAPICommander.Proxies;
+﻿using ESAPICommander.Logger;
+using ESAPICommander.Proxies;
 
 namespace ESAPICommander.Commands
 {
@@ -9,7 +10,7 @@ namespace ESAPICommander.Commands
             throw new System.NotImplementedException();
         }
 
-        public DvhCommandDirector(IEsapiCalls esapi) : base(esapi)
+        public DvhCommandDirector(IEsapiCalls esapi, ILog log) : base(esapi, log)
         {
         }
     }

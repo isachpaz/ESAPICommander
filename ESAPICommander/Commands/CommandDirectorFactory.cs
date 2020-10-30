@@ -1,5 +1,6 @@
 ﻿using System;
 using ESAPICommander.ArgumentConfig;
+using ESAPICommander.Logger;
 using ESAPICommander.Proxies;
 
 namespace ESAPICommander.Commands
@@ -10,7 +11,7 @@ namespace ESAPICommander.Commands
         {
             try
             {
-                return new DumpCommandDirector(opts, EclipseProxy.Create());
+                return new DumpCommandDirector(opts, EclipseProxy.Create(), new LogConsole());
             }
             catch (Exception e)
             {

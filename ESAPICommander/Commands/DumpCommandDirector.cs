@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ESAPICommander.ArgumentConfig;
+using ESAPICommander.Logger;
 using ESAPICommander.Proxies;
 using VMS.TPS.Common.Model.API;
 
@@ -10,7 +11,7 @@ namespace ESAPICommander.Commands
     {
         private DumpArgOptions _options;
 
-        public DumpCommandDirector(DumpArgOptions options, IEsapiCalls esapi) : base(esapi)
+        public DumpCommandDirector(DumpArgOptions options, IEsapiCalls esapi, ILog log) : base(esapi, log)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
@@ -19,12 +20,12 @@ namespace ESAPICommander.Commands
         {
             if (!IsPIZAvailable(_options.PIZ))
             {
-                Console.WriteLine($"Patient with PIZ={_options.PIZ} cannot be found...");
-                Console.WriteLine("Process stopped.");
+                _log.AddInfo($"Patient with PIZ={_options.PIZ} cannot be found...");
+                _log.AddInfo("Process stopped.");
             }
             else
             {
-                Console.WriteLine($"Patient with PIZ={_options.PIZ} found.");
+                _log.AddInfo($"Patient with PIZ={_options.PIZ} found.");
             }
 
             var patient = Esapi.OpenPatient(_options.PIZ);
@@ -33,21 +34,21 @@ namespace ESAPICommander.Commands
             {
                 foreach (PlanSetup plan in course.PlanSetups)
                 {
-                    Console.WriteLine($"Course: {course.Id}");
-                    Console.WriteLine($"Plan: {plan?.Id} -> Number of fractions: {plan?.NumberOfFractions}, " +
-                                      $"Prescription dose: {plan?.TotalDose}");
-                    Console.WriteLine($"StructureSet: {plan?.StructureSet?.Id}");
-                    Console.WriteLine($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-                    Console.WriteLine("");
+                    _log.AddInfo($"Course: {course.Id}");
+                    _log.AddInfo($"Plan: {plan?.Id} -> Number of fractions: {plan?.NumberOfFractions}, " +
+                                 $"Prescription dose: {plan?.TotalDose}");
+                    _log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
+                    _log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
+                    _log.AddInfo("");
                 }
 
                 foreach (PlanSum plan in course.PlanSums)
                 {
-                    Console.WriteLine($"Course: {course.Id}");
-                    Console.WriteLine($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
-                    Console.WriteLine($"StructureSet: {plan?.StructureSet?.Id}");
-                    Console.WriteLine($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-                    Console.WriteLine("");
+                    _log.AddInfo($"Course: {course.Id}");
+                    _log.AddInfo($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
+                    _log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
+                    _log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
+                    _log.AddInfo("");
                 }
             }
             

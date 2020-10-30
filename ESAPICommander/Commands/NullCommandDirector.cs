@@ -1,4 +1,5 @@
 ﻿using System;
+using ESAPICommander.Logger;
 using ESAPICommander.Proxies;
 
 namespace ESAPICommander.Commands
@@ -11,7 +12,7 @@ namespace ESAPICommander.Commands
             Console.WriteLine("An error occurred. Please check the log file.");
         }
 
-        public NullCommandDirector() : base(new NullEclipseProxy())
+        public NullCommandDirector() : base(new NullEclipseProxy(), new NullLog())
         {
         }
     }
