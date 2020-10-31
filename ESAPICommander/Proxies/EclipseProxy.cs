@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VMS.TPS.Common.Model;
+using ESAPICommander.Adapters;
+using ESAPICommander.Interfaces;
 using VMS.TPS.Common.Model.API;
 
 namespace ESAPICommander.Proxies
@@ -39,16 +40,28 @@ namespace ESAPICommander.Proxies
 
         public IEnumerable<ICourse> GetCourses()
         {
-            if (_patient != null)
-            {
-                return _patient.Courses.Select(x=>(ICourse)x);
-            }
-            return new List<ICourse>();
+            EclipseProxy.CheckPatientOrThrowException(_patient);
+            return _patient.Courses.Select(x=>new CourseAdapter(x));
         }
 
-        public IEnumerable<IPlanSetup> GetPlanSetupsFor(ICourse course)
+        public IEnumerable<IPlanSetup> GetPlanSetupsFor(string courseId)
         {
-            throw new NotImplementedException();
+            EclipseProxy.CheckPatientOrThrowException(_patient);
+            var course = _patient.Courses.FirstOrDefault(x => x.Id == courseId);
+            return course?.PlanSetups.Select(x => (new PlanSetupAdapter(x)) as IPlanSetup);
+        }
+
+        private static void CheckPatientOrThrowException(Patient patient)
+        {
+            if (patient == null)
+                throw new Exception("Patient is not opened.");
+        }
+
+        public IEnumerable<IPlanSum> GetPlanSumsFor(string courseId)
+        {
+            EclipseProxy.CheckPatientOrThrowException(_patient);
+            var course = _patient.Courses.FirstOrDefault(x => x.Id == courseId);
+            return course?.PlanSums.Select(x => (new PlanSumAdapter(x)) as IPlanSum);
         }
 
         public void Dispose()

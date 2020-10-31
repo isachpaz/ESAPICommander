@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.SqlServer.Server;
-using VMS.TPS.Common.Model;
+using ESAPICommander.Interfaces;
 using VMS.TPS.Common.Model.API;
 
 namespace ESAPICommander.Proxies
@@ -12,6 +11,7 @@ namespace ESAPICommander.Proxies
         void OpenPatient(string piz);
         void ClosePatient();
         IEnumerable<ICourse> GetCourses();
-        IEnumerable<IPlanSetup> GetPlanSetupsFor(ICourse course);
+        IEnumerable<IPlanSetup> GetPlanSetupsFor(string course);
+        IEnumerable<IPlanSum> GetPlanSumsFor(string course);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ESAPICommander.ArgumentConfig;
+using ESAPICommander.Interfaces;
 using ESAPICommander.Logger;
 using ESAPICommander.Proxies;
 using VMS.TPS.Common.Model;
@@ -37,7 +38,7 @@ namespace ESAPICommander.Commands
             //foreach (Course course in patient.Courses)
             foreach (ICourse course in courses)
             {
-                foreach (IPlanSetup planSetup in Esapi.GetPlanSetupsFor(course))
+                foreach (IPlanSetup planSetup in Esapi.GetPlanSetupsFor(course.Id))
                     //foreach (PlanSetup plan in course.PlanSetups)
                 {
                     _log.AddInfo($"Course: {course.Id}");
