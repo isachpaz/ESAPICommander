@@ -3,6 +3,7 @@ using System.Linq;
 using ESAPICommander.ArgumentConfig;
 using ESAPICommander.Logger;
 using ESAPICommander.Proxies;
+using VMS.TPS.Common.Model;
 using VMS.TPS.Common.Model.API;
 
 namespace ESAPICommander.Commands
@@ -16,22 +17,30 @@ namespace ESAPICommander.Commands
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public override void Run()
+        public override int Run()
         {
             if (!IsPIZAvailable(_options.PIZ))
             {
                 _log.AddInfo($"Patient with PIZ={_options.PIZ} cannot be found...");
                 _log.AddInfo("Process stopped.");
+                return -1;
             }
             else
             {
                 _log.AddInfo($"Patient with PIZ={_options.PIZ} found.");
             }
 
-            var patient = Esapi.OpenPatient(_options.PIZ);
+            //var patient = Esapi.OpenPatient(_options.PIZ);
+            Esapi.OpenPatient(_options.PIZ);
+            var courses = Esapi.GetCourses();
 
-            foreach (Course course in patient.Courses)
+            //foreach (Course course in patient.Courses)
+            foreach (ICourse course in courses)
             {
+                foreach (IPlanSetup planSetup in Esapi.GetPlanSetupsFor(course))
+                {
+                    
+                }
                 foreach (PlanSetup plan in course.PlanSetups)
                 {
                     _log.AddInfo($"Course: {course.Id}");
@@ -51,7 +60,8 @@ namespace ESAPICommander.Commands
                     _log.AddInfo("");
                 }
             }
-            
+
+            return 0;
         }
 
     }

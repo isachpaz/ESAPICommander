@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ESAPICommander.Commands;
+using ESAPICommander.Proxies;
 
 namespace ESAPICommander
 {
@@ -29,17 +30,16 @@ namespace ESAPICommander
             catch (Exception e)
             {
                 Console.Error.WriteLine(e.ToString());
+                return -1;
             }
-
-            return -1;
         }
 
         private static int RunDump(DumpArgOptions opts)
         {
-            var ed = CommandDirectorFactory.CreateDump(opts);
-            ed.Run();
+            var ed = CommandDirectorFactory.CreateDump(opts, EclipseProxy.Create());
+            var errorCode = ed.Run();
             ed.Dispose();
-            return 0;
+            return errorCode;
         }
 
         private static int RunDvh(DvhArgOptions opts)

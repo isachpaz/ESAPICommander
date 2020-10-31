@@ -18,7 +18,7 @@ namespace ESAPICommander.Commands
 
         protected  IEsapiCalls Esapi { get; set; }
 
-        public abstract void Run();
+        public abstract int Run();
 
         public bool IsPIZAvailable(string piz)
         {

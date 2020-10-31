@@ -5,7 +5,7 @@ namespace ESAPICommander.Commands
 {
     public class PointsstructureCommandDirector : BaseCommandDirector
     {
-        public override void Run()
+        public override int Run()
         {
             throw new System.NotImplementedException();
         }
