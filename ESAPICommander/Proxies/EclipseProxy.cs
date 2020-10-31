@@ -16,20 +16,10 @@ namespace ESAPICommander.Proxies
             _app = app;
         }
 
-        public static IEsapiCalls Create(Application app=null)
+        public static IEsapiCalls Create(Application app)
         {
-            try
-            {
-                if (app == null)
-                {
-                    app = Application.CreateApplication();
-                }
-                return new EclipseProxy(app);
-            }
-            catch (Exception e)
-            {   
-                return new NullEclipseProxy();
-            }
+            if (app == null) throw new ArgumentNullException(nameof(app));
+            return new EclipseProxy(app);
         }
 
         public bool IsPatientAvailable(string piz)

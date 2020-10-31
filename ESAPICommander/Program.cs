@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ESAPICommander.Commands;
 using ESAPICommander.Proxies;
+using VMS.TPS.Common.Model.API;
 
 namespace ESAPICommander
 {
@@ -36,7 +37,7 @@ namespace ESAPICommander
 
         private static int RunDump(DumpArgOptions opts)
         {
-            var ed = CommandDirectorFactory.CreateDump(opts, EclipseProxy.Create());
+            var ed = CommandDirectorFactory.CreateDump(opts, EclipseProxy.Create(Application.CreateApplication()));
             var errorCode = ed.Run();
             ed.Dispose();
             return errorCode;

@@ -86,7 +86,6 @@
     <Compile Include="Commands\CommandDirectorFactory.cs" />
     <Compile Include="Commands\DumpCommandDirector.cs" />
     <Compile Include="Commands\DvhCommandDirector.cs" />
-    <Compile Include="Commands\NullCommandDirector.cs" />
     <Compile Include="Commands\PointsstructureCommandDirector.cs" />
     <Compile Include="Logger\ILog.cs" />
     <Compile Include="Logger\LogConsole.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxies\EclipseProxy.cs" />
     <Compile Include="Proxies\IEsapiCalls.cs" />
-    <Compile Include="Proxies\NullEclipseProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

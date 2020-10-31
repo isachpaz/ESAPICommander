@@ -17,7 +17,8 @@ namespace ESAPICommander.Commands
             {
                 Console.WriteLine(e);
             }
-            return new NullCommandDirector();
+
+            return null;
         }
 
     }

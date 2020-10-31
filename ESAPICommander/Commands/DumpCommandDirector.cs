@@ -38,16 +38,14 @@ namespace ESAPICommander.Commands
             foreach (ICourse course in courses)
             {
                 foreach (IPlanSetup planSetup in Esapi.GetPlanSetupsFor(course))
-                {
-                    
-                }
-                foreach (PlanSetup plan in course.PlanSetups)
+                    //foreach (PlanSetup plan in course.PlanSetups)
                 {
                     _log.AddInfo($"Course: {course.Id}");
-                    _log.AddInfo($"Plan: {plan?.Id} -> Number of fractions: {plan?.NumberOfFractions}, " +
-                                 $"Prescription dose: {plan?.TotalDose}");
-                    _log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
-                    _log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
+                    _log.AddInfo($"Plan: {planSetup?.Id} -> Number of fractions: {planSetup?.NumberOfFractions}, " +
+                                 $"Prescription dose: {planSetup?.TotalDose}");
+                    _log.AddInfo($"StructureSet: {planSetup?.StructureSet?.Id}");
+                    //_log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
+                    _log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet.Structures)}");
                     _log.AddInfo("");
                 }
 

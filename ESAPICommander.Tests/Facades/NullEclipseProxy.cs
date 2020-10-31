@@ -5,17 +5,17 @@ using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using ESAPICommander.Proxies;
 using VMS.TPS.Common.Model;
-using VMS.TPS.Common.Model.API;
 using VMS.TPS.Common.Model.Types;
 
-namespace ESAPICommander.Proxies
+namespace ESAPICommander.Tests.Proxies
 {
     public class NullEclipseProxy : IEsapiCalls
     {
         public void Dispose()
         {
-            
+
         }
 
         public bool IsPatientAvailable(string piz)
@@ -25,23 +25,23 @@ namespace ESAPICommander.Proxies
 
         public void OpenPatient(string piz)
         {
-            
+
         }
 
         public void ClosePatient()
         {
-            
+
         }
 
         public IEnumerable<ICourse> GetCourses()
         {
-            return new List<ICourse>() {new xCourse(){Id = "C1"}, new xCourse(){Id = "C2"}};
+            return new List<ICourse>() { new xCourse() { Id = "C1" }, new xCourse() { Id = "C2" } };
         }
 
         public IEnumerable<IPlanSetup> GetPlanSetupsFor(ICourse course)
         {
             return new IPlanSetup[]{
-                new xPlanSetup(){Id = "Plan-1"}, 
+                new xPlanSetup(){Id = "Plan-1"},
                 new xPlanSetup(){Id = "Plan-2"},
             };
         }
