@@ -45,18 +45,19 @@ namespace ESAPICommander.Commands
                                  $"Prescription dose: {planSetup?.TotalDose}");
                     _log.AddInfo($"StructureSet: {planSetup?.StructureSet?.Id}");
                     //_log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-                    _log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet.Structures)}");
+                    if (planSetup?.StructureSet != null)
+                        _log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet?.Structures)}");
                     _log.AddInfo("");
                 }
 
-                foreach (PlanSum plan in course.PlanSums)
-                {
-                    _log.AddInfo($"Course: {course.Id}");
-                    _log.AddInfo($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
-                    _log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
-                    _log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-                    _log.AddInfo("");
-                }
+                //foreach (PlanSum plan in course.PlanSums)
+                //{
+                //    _log.AddInfo($"Course: {course.Id}");
+                //    _log.AddInfo($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
+                //    _log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
+                //    _log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
+                //    _log.AddInfo("");
+                //}
             }
 
             return 0;
