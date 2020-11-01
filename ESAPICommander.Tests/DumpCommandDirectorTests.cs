@@ -24,13 +24,24 @@ namespace ESAPICommander.Tests
         }
 
         [Test]
-        public void Test_Run()
+        public void Test_Run_PlanSetup()
         {
             var options = new DumpArgOptions(){PIZ = "123456Test"};
             var commander = new DumpCommandDirector(options, new NullEclipseProxy(), new LogConsole(DummyConsole));
             var result = commander.Run();
             Console.WriteLine(string.Join("\n", Repository));
             Assert.AreEqual(true, Repository.Any(x => x.Contains("Plan-1")));
+            Assert.AreEqual(true, Repository.Any(x => x.Contains("PIZ=123456Test found")));
+        }
+        
+        [Test]
+        public void Test_Run_PlanSum()
+        {
+            var options = new DumpArgOptions(){PIZ = "123456Test"};
+            var commander = new DumpCommandDirector(options, new NullEclipseProxy(), new LogConsole(DummyConsole));
+            var result = commander.Run();
+            Console.WriteLine(string.Join("\n", Repository));
+            Assert.AreEqual(true, Repository.Any(x => x.Contains("PlanSum-1")));
             Assert.AreEqual(true, Repository.Any(x => x.Contains("PIZ=123456Test found")));
         }
     }

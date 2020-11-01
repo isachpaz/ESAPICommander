@@ -51,14 +51,14 @@ namespace ESAPICommander.Commands
                     _log.AddInfo("");
                 }
 
-                //foreach (PlanSum plan in course.PlanSums)
-                //{
-                //    _log.AddInfo($"Course: {course.Id}");
-                //    _log.AddInfo($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
-                //    _log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
-                //    _log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-                //    _log.AddInfo("");
-                //}
+                foreach (IPlanSum plan in Esapi.GetPlanSumsFor(course.Id))
+                {
+                    _log.AddInfo($"Course: {course.Id}");
+                    _log.AddInfo($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
+                    //_log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
+                    //_log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
+                    _log.AddInfo("");
+                }
             }
 
             return 0;

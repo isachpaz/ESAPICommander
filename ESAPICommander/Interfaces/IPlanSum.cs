@@ -5,7 +5,7 @@ namespace ESAPICommander.Interfaces
     public interface IPlanSum
     {
         string Id { get; }
-        IEnumerable<IPlanSetup> Plans { get; }
+        IEnumerable<IPlanSetup> PlanSetups { get; }
         ICourse Course { get; }
     }
 }

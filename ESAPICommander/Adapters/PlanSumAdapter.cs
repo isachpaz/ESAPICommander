@@ -16,7 +16,7 @@ namespace ESAPICommander.Adapters
 
         public string Id => _planSum.Id;
 
-        public IEnumerable<IPlanSetup> Plans => _planSum.PlanSetups.Select(x=>new PlanSetupAdapter(x));
+        public IEnumerable<IPlanSetup> PlanSetups => _planSum.PlanSetups.Select(x=>new PlanSetupAdapter(x));
         public ICourse Course => new CourseAdapter(_planSum.Course);
     }
 }
