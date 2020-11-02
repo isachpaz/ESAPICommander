@@ -16,7 +16,8 @@ namespace ESAPICommander.Commands
 
         public override int Run()
         {
-            throw new System.NotImplementedException();
+
+            return 0;
         }
 
     }
