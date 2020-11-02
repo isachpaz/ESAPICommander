@@ -1,5 +1,6 @@
-﻿using ESAPICommander.Logger;
-using ESAPICommander.Proxies;
+﻿using ESAPICommander.Esapi;
+using ESAPICommander.Logger;
+using ESAPIX.Interfaces;
 
 namespace ESAPICommander.Commands
 {
@@ -10,7 +11,7 @@ namespace ESAPICommander.Commands
             throw new System.NotImplementedException();
         }
 
-        public DvhCommandDirector(IEsapiCalls esapi, ILog log) : base(esapi, log)
+        public DvhCommandDirector(EsapiManager esapi, ILog log) : base(esapi, log)
         {
         }
     }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using ESAPICommander.ArgumentConfig;
 using ESAPICommander.Commands;
+using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
-using ESAPICommander.Tests.Proxies;
 using NUnit.Framework;
 
 namespace ESAPICommander.Tests
@@ -25,7 +25,7 @@ namespace ESAPICommander.Tests
         public void Test_Run()
         {
             var options = new DumpArgOptions() { PIZ = "123456Test" };
-            var commander = new DumpCommandDirector(options, new NullEclipseProxy(), new LogConsole(DummyConsole));
+            var commander = new DumpCommandDirector(options, new EsapiManager(), new LogConsole(DummyConsole));
             var result = commander.Run();
             Console.WriteLine(string.Join("\n", Repository));
         }

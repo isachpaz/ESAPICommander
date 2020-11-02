@@ -1,6 +1,7 @@
 ﻿using ESAPICommander.ArgumentConfig;
+using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
-using ESAPICommander.Proxies;
+using ESAPIX.Interfaces;
 
 namespace ESAPICommander.Commands
 {
@@ -8,7 +9,7 @@ namespace ESAPICommander.Commands
     {
         private PointsstructureArgOptions _options;
 
-        public PointsstructureCommandDirector(PointsstructureArgOptions options, IEsapiCalls esapi, ILog log) :
+        public PointsstructureCommandDirector(PointsstructureArgOptions options, EsapiManager esapi, ILog log) :
             base(esapi, log)
         {
             _options = options;

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using ESAPICommander.ArgumentConfig;
+using ESAPICommander.Esapi;
 using ESAPICommander.Interfaces;
 using ESAPICommander.Logger;
-using ESAPICommander.Proxies;
+
+using ESAPIX.Interfaces;
 using VMS.TPS.Common.Model;
 using VMS.TPS.Common.Model.API;
 
@@ -13,7 +15,7 @@ namespace ESAPICommander.Commands
     {
         private DumpArgOptions _options;
 
-        public DumpCommandDirector(DumpArgOptions options, IEsapiCalls esapi, ILog log) : base(esapi, log)
+        public DumpCommandDirector(DumpArgOptions options, EsapiManager esapi, ILog log) : base(esapi, log)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }

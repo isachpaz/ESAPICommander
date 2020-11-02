@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
-using ESAPICommander.Proxies;
+using ESAPIX.Interfaces;
 using VMS.TPS.Common.Model.API;
 
 namespace ESAPICommander.Commands
@@ -10,18 +11,19 @@ namespace ESAPICommander.Commands
     {
         protected readonly ILog _log;
 
-        protected BaseCommandDirector(IEsapiCalls esapi, ILog log)
+        protected BaseCommandDirector(EsapiManager esapi, ILog log)
         {
             _log = log;
             Esapi = esapi;
         }
 
-        protected  IEsapiCalls Esapi { get; set; }
+        protected EsapiManager Esapi { get; set; }
 
         public abstract int Run();
 
         public bool IsPIZAvailable(string piz)
         {
+            
             return Esapi.IsPatientAvailable(piz);
         }
 
