@@ -2,8 +2,6 @@
 using System.Linq;
 using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
-using ESAPIX.Interfaces;
-using VMS.TPS.Common.Model.API;
 
 namespace ESAPICommander.Commands
 {

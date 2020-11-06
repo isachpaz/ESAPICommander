@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ESAPICommander</RootNamespace>
     <AssemblyName>ESAPICommander</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -68,12 +68,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="VMS.TPS.Common.Model.API, Version=1.0.300.11, Culture=neutral, PublicKeyToken=305b81e210ec4b89, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dlls\ESAPI_15.6\VMS.TPS.Common.Model.API.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Varian\RTM\15.6\esapi\API\VMS.TPS.Common.Model.API.dll</HintPath>
     </Reference>
-    <Reference Include="VMS.TPS.Common.Model.Types, Version=1.0.300.11, Culture=neutral, PublicKeyToken=305b81e210ec4b89, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dlls\ESAPI_15.6\VMS.TPS.Common.Model.Types.dll</HintPath>
-    </Reference>
+    <Reference Include="VMS.TPS.Common.Model.Types, Version=1.0.300.11, Culture=neutral, PublicKeyToken=305b81e210ec4b89, processorArchitecture=AMD64" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +84,7 @@
     <Compile Include="Commands\DvhCommandDirector.cs" />
     <Compile Include="Commands\PointsstructureCommandDirector.cs" />
     <Compile Include="Esapi\EsapiManager.cs" />
+    <Compile Include="FacadeSerializer.cs" />
     <Compile Include="Interfaces\ICourse.cs" />
     <Compile Include="Interfaces\IPlanSetup.cs" />
     <Compile Include="Interfaces\IPlanSum.cs" />
@@ -101,7 +99,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="CommandLineParser">
       <Version>2.8.0</Version>

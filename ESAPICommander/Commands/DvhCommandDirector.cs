@@ -1,6 +1,5 @@
 ﻿using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
-using ESAPIX.Interfaces;
 
 namespace ESAPICommander.Commands
 {
