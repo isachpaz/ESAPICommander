@@ -14,7 +14,7 @@ namespace ExplorerConsoleApp
         {
             var em = ESAPIManager.CreateEsapiThreadDefault(()=>VMS.TPS.Common.Model.API.Application.CreateApplication());
 
-            Debug.WriteLine($"User = {em.Getuser().Id}");
+            Debug.WriteLine($"User = {em.GetUser().Id}");
             Debug.WriteLine($"Total # of patients = {em.GetPatientSummaries().ToList().Count}");
 
             em.Dispose();

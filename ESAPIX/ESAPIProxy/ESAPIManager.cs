@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESAPIX.Common;
+using EC = ESAPIX.Common;
 using E = ESAPIX.Facade.API;
 using V = VMS.TPS.Common.Model.API;
 
@@ -11,7 +11,7 @@ namespace ESAPIProxy
 {
     public class ESAPIManager : IDisposable
     {
-        private readonly AppComThread _thread;
+        private readonly EC.AppComThread _thread;
 
         private ESAPIManager(ESAPIX.Common.AppComThread _thread)
         {
@@ -24,13 +24,11 @@ namespace ESAPIProxy
             return new ESAPIManager(ESAPIX.Common.AppComThread.Instance);
         }
 
-        public E.User Getuser()
+        public E.User GetUser()
         {
             return _thread.GetValue(ctx =>
             {
-                var user = new ESAPIX.Facade.API.User();
-                user.Name = ctx.CurrentUser.Name;
-                user.Id = ctx.CurrentUser.Id;
+                var user = new ESAPIX.Facade.API.User {Name = ctx.CurrentUser.Name, Id = ctx.CurrentUser.Id};
                 return user;
             });
         }
