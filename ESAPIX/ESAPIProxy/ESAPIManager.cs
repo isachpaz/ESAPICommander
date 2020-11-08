@@ -13,15 +13,28 @@ namespace ESAPIProxy
     {
         private readonly EC.AppComThread _thread;
 
-        private ESAPIManager(ESAPIX.Common.AppComThread _thread)
+        protected ESAPIManager(ESAPIX.Common.AppComThread _thread)
         {
             this._thread = _thread;
         }
 
         public static ESAPIManager CreateEsapiThreadDefault(Func<V.Application> createAppFunc)
         {
-            ESAPIX.Common.AppComThread.Instance.SetContext(createAppFunc);
-            return new ESAPIManager(ESAPIX.Common.AppComThread.Instance);
+            try
+            {
+                ESAPIX.Common.AppComThread.Instance.SetContext(createAppFunc);
+                return new ESAPIManager(ESAPIX.Common.AppComThread.Instance);
+            }
+            //catch (Exception e)
+            //{
+
+            //}
+            catch (System.ApplicationException sae)
+            {
+
+            }
+
+            return new NullEsapiManager();
         }
 
         public E.User GetUser()
