@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1259
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESAPICommander", "ESAPICommander.csproj", "{DD32CF09-F88F-4BB2-9C5D-4E1F04D6F744}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESAPIX.15.5", "..\ESAPIX\ESAPIX\ESAPIX.15.5.csproj", "{F7AC258C-F322-4D66-B6CB-F45A274B3A8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESAPIProxy", "..\ESAPIX\ESAPIProxy\ESAPIProxy.csproj", "{7873C99B-88C8-4A7E-968F-F33577974F39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerConsoleApp", "..\ESAPIX\ExplorerConsoleApp\ExplorerConsoleApp.csproj", "{78C12383-33B9-48E6-A128-CD9B930C804C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,14 @@ Global
 		{7873C99B-88C8-4A7E-968F-F33577974F39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7873C99B-88C8-4A7E-968F-F33577974F39}.Release|x64.ActiveCfg = Release|x64
 		{7873C99B-88C8-4A7E-968F-F33577974F39}.Release|x64.Build.0 = Release|x64
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Debug|x64.ActiveCfg = Debug|x64
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Debug|x64.Build.0 = Debug|x64
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Release|x64.ActiveCfg = Release|x64
+		{78C12383-33B9-48E6-A128-CD9B930C804C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
