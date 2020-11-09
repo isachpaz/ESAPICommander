@@ -23,6 +23,10 @@ namespace ExplorerConsoleApp
             Debug.WriteLine($"User = {em.GetUser().Id}");
             Debug.WriteLine($"Total # of patients = {em.GetPatientSummaries().ToList().Count}");
 
+            var isPatientOpened = em.OpenPatientbyId("123456789");
+            var courses = em.GetCourse();
+
+
             em.Dispose();
         }
 

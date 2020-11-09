@@ -46,6 +46,24 @@ namespace ESAPIProxy
             });
         }
 
+        public bool OpenPatientbyId(string zip)
+        {
+            return _thread.GetValue(ctx =>
+            {
+                var result = ctx.SetPatient(zip);
+                return result;
+            });
+        }
+
+        public E.Patient GetPatient()
+        {
+            return _thread.GetValue(ctx =>
+            {
+                var patient = new E.Patient() { Name = ctx.CurrentUser.Name, Id = ctx.CurrentUser.Id };
+                return patient;
+            });
+        }
+
         public IEnumerable<E.PatientSummary> GetPatientSummaries()
         {
             return _thread.GetValue(ctx =>
@@ -54,7 +72,7 @@ namespace ESAPIProxy
                 List<E.PatientSummary> list = new List<E.PatientSummary>();
                 foreach (V.PatientSummary item in summaries)
                 {
-                    var ps = new ESAPIX.Facade.API.PatientSummary
+                    var ps = new E.PatientSummary
                     {
                         FirstName = item.FirstName, LastName = item.LastName, Id = item.Id
                     };
@@ -87,6 +105,36 @@ namespace ESAPIProxy
         ~ESAPIManager()
         {
             Dispose(false);
+        }
+
+        public IEnumerable<E.Course> GetCourse()
+        {
+            return _thread.GetValue(ctx =>
+            {
+                var courses = ctx.Patient?.Courses;
+                var list = new List<E.Course>();
+                foreach ( var item in courses)
+                {
+                    var ps = new E.Course()
+                    {
+                        Id = item.Id,
+                        Patient = new E.Patient()
+                        {
+                            Id = item.Patient.Id, FirstName = item.Patient.FirstName, LastName = item.Patient.LastName
+                        },
+                    };
+
+                    var planSetups = new List<E.PlanSetup>();
+                    foreach (V.PlanSetup planSetup in item.PlanSetups)
+                    {
+                        var newPlanSetup = new E.PlanSetup();
+                        planSetups.Add(newPlanSetup);
+                    }
+
+                    list.Add(ps);
+                }
+                return list;
+            });
         }
     }
 }

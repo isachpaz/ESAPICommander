@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ESAPIManager.cs" />
+    <Compile Include="Extensions\ProxyTools.cs" />
     <Compile Include="NullEsapiManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,5 +77,6 @@
       <Name>ESAPIX.15.5</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
