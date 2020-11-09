@@ -2,21 +2,26 @@
 
 namespace ESAPIProxy
 {
-    public class TagNode
+    public class Node
     {
-        public List<TagNode> Children = new List<TagNode>();
-        public TagNode Parent { get; set; }
-        public MyObject Source { get; set; }
+        public List<Node> Children = new List<Node>();
+        public Node Parent { get; set; }
+        public Tag Source { get; set; }
 
-        List<TagNode> BuildTreeAndGetRoots(List<MyObject> actualObjects)
+        public override string ToString()
         {
-            var lookup = new Dictionary<int, TagNode>();
-            var rootNodes = new List<TagNode>();
+            return $"{nameof(Source)}: {Source}";
+        }
+
+        public static List<Node> BuildTreeAndGetRoots(List<Tag> actualObjects)
+        {
+            var lookup = new Dictionary<int, Node>();
+            var rootNodes = new List<Node>();
 
             foreach (var item in actualObjects)
             {
                 // add us to lookup
-                TagNode ourNode;
+                Node ourNode;
                 if (lookup.TryGetValue(item.ID, out ourNode))
                 {
                     // was already found as a parent - register the actual object
@@ -24,7 +29,7 @@ namespace ESAPIProxy
                 }
                 else
                 {
-                    ourNode = new TagNode() {Source = item};
+                    ourNode = new Node() {Source = item};
                     lookup.Add(item.ID, ourNode);
                 }
 
@@ -37,11 +42,11 @@ namespace ESAPIProxy
                 else
                 {
                     // is a child row - so we have a parent
-                    TagNode parentNode;
+                    Node parentNode;
                     if (!lookup.TryGetValue(item.ParentID, out parentNode))
                     {
                         // unknown parent, construct preliminary parent
-                        parentNode = new TagNode();
+                        parentNode = new Node();
                         lookup.Add(item.ParentID, parentNode);
                     }
 
@@ -51,6 +56,11 @@ namespace ESAPIProxy
             }
 
             return rootNodes;
+        }
+
+        public void AddChildren(Node node)
+        {
+            Children.Add(node);
         }
     }
 }
