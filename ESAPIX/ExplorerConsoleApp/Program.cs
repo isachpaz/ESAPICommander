@@ -20,10 +20,12 @@ namespace ExplorerConsoleApp
             var em = ESAPIManager.CreateEsapiThreadDefault(() =>
                 VMS.TPS.Common.Model.API.Application.CreateApplication());
 
-            Debug.WriteLine($"User = {em.GetUser().Id}");
-            Debug.WriteLine($"Total # of patients = {em.GetPatientSummaries().ToList().Count}");
+            var patientSummaries = em.GetPatientSummaries().ToList();
 
-            var isPatientOpened = em.OpenPatientbyId("123456789");
+            Debug.WriteLine($"User = {em.GetUser().Id}");
+            Debug.WriteLine($"Total # of patients = {patientSummaries.Count}");
+
+            var isPatientOpened = em.OpenPatientbyId(patientSummaries.FirstOrDefault(x=>x.Id.Contains("Prostata_")).Id);
             var courses = em.GetCourse();
 
 

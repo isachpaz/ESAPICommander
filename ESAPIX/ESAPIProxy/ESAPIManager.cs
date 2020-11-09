@@ -111,6 +111,7 @@ namespace ESAPIProxy
         {
             return _thread.GetValue(ctx =>
             {
+                var ss = ctx.Course.PlanSetups;
                 var courses = ctx.Patient?.Courses;
                 var list = new List<E.Course>();
                 foreach ( var item in courses)
