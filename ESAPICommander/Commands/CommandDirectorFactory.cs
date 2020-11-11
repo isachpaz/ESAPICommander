@@ -1,15 +1,14 @@
 ﻿using System;
 using ESAPICommander.ArgumentConfig;
-using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
-
+using ESAPIProxy;
 
 
 namespace ESAPICommander.Commands
 {
     public class CommandDirectorFactory
     {
-        public static BaseCommandDirector CreateDump(DumpArgOptions opts, EsapiManager esapi)
+        public static BaseCommandDirector CreateDump(DumpArgOptions opts, ESAPIManager esapi)
         {
             try
             {

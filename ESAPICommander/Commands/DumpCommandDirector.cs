@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using ESAPICommander.ArgumentConfig;
-using ESAPICommander.Esapi;
 using ESAPICommander.Interfaces;
 using ESAPICommander.Logger;
+using ESAPIProxy;
 
 
 namespace ESAPICommander.Commands
@@ -12,7 +12,7 @@ namespace ESAPICommander.Commands
     {
         private DumpArgOptions _options;
 
-        public DumpCommandDirector(DumpArgOptions options, EsapiManager esapi, ILog log) : base(esapi, log)
+        public DumpCommandDirector(DumpArgOptions options, ESAPIManager esapi, ILog log) : base(esapi, log)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
@@ -30,37 +30,7 @@ namespace ESAPICommander.Commands
                 _log.AddInfo($"Patient with PIZ={_options.PIZ} found.");
             }
 
-            //var patient = Esapi.OpenPatient(_options.PIZ);
-            Esapi.OpenPatient(_options.PIZ);
-            Esapi.GetCourses();
-
-            //foreach (Course course in patient.Courses)
-            //foreach (var course in courses)
-            //{
-            //    Console.WriteLine(course.Id);
-
-            //    foreach (var planSetup in Esapi.GetPlanSetupsFor(course.Id))
-            //        //foreach (PlanSetup plan in course.PlanSetups)
-            //    {
-            //        _log.AddInfo($"Course: {course.Id}");
-            //        _log.AddInfo($"Plan: {planSetup?.Id} -> Number of fractions: {planSetup?.NumberOfFractions}, " +
-            //                     $"Prescription dose: {planSetup?.TotalDose}");
-            //        _log.AddInfo($"StructureSet: {planSetup?.StructureSet?.Id}");
-            //        //_log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-            //        if (planSetup?.StructureSet != null)
-            //            _log.AddInfo($"Structures: {string.Join(", ", planSetup?.StructureSet?.Structures)}");
-            //        _log.AddInfo("");
-            //    }
-
-            //    foreach (IPlanSum plan in Esapi.GetPlanSumsFor(course.Id))
-            //    {
-            //        _log.AddInfo($"Course: {course.Id}");
-            //        //_log.AddInfo($"Summed Plan: {plan?.Id} -> {string.Join(", ", plan?.PlanSetups?.Select(x => x.Id) ?? Array.Empty<string>())}");
-            //        //_log.AddInfo($"StructureSet: {plan?.StructureSet?.Id}");
-            //        //_log.AddInfo($"Structures: {string.Join(", ", plan?.StructureSet?.Structures ?? Array.Empty<Structure>())}");
-            //        _log.AddInfo("");
-            //    }
-            //}
+            
 
             return 0;
         }

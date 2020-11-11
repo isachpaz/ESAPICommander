@@ -20,21 +20,8 @@ namespace ESAPIProxy
 
         public static ESAPIManager CreateEsapiThreadDefault(Func<V.Application> createAppFunc)
         {
-            try
-            {
-                ESAPIX.Common.AppComThread.Instance.SetContext(createAppFunc);
-                return new ESAPIManager(ESAPIX.Common.AppComThread.Instance);
-            }
-            //catch (Exception e)
-            //{
-
-            //}
-            catch (System.ApplicationException sae)
-            {
-
-            }
-
-            return new NullEsapiManager();
+            ESAPIX.Common.AppComThread.Instance.SetContext(createAppFunc);
+            return new ESAPIManager(ESAPIX.Common.AppComThread.Instance);
         }
 
         public E.User GetUser()
@@ -59,7 +46,7 @@ namespace ESAPIProxy
         {
             return _thread.GetValue(ctx =>
             {
-                var patient = new E.Patient() { Name = ctx.CurrentUser.Name, Id = ctx.CurrentUser.Id };
+                var patient = new E.Patient() {Name = ctx.CurrentUser.Name, Id = ctx.CurrentUser.Id};
                 return patient;
             });
         }
@@ -78,6 +65,7 @@ namespace ESAPIProxy
                     };
                     list.Add(ps);
                 }
+
                 return list;
             });
         }
@@ -114,7 +102,7 @@ namespace ESAPIProxy
                 var ss = ctx.Course.PlanSetups;
                 var courses = ctx.Patient?.Courses;
                 var list = new List<E.Course>();
-                foreach ( var item in courses)
+                foreach (var item in courses)
                 {
                     var ps = new E.Course()
                     {
@@ -134,6 +122,7 @@ namespace ESAPIProxy
 
                     list.Add(ps);
                 }
+
                 return list;
             });
         }

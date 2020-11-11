@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Linq;
-using ESAPICommander.Esapi;
+using ESAPIProxy;
 using ESAPICommander.Logger;
 
 namespace ESAPICommander.Commands
 {
     public abstract class BaseCommandDirector : IDisposable
     {
+        private readonly ESAPIManager _esapi;
         protected readonly ILog _log;
 
-        protected BaseCommandDirector(EsapiManager esapi, ILog log)
+        protected BaseCommandDirector(ESAPIManager esapi, ILog log)
         {
+            _esapi = esapi;
             _log = log;
-            Esapi = esapi;
         }
 
-        protected EsapiManager Esapi { get; set; }
+        
 
         public abstract int Run();
 
         public bool IsPIZAvailable(string piz)
         {
-            
-            return Esapi.IsPatientAvailable(piz);
+            return _esapi.GetPatientSummaries().Any(p=>p.Id == piz);
         }
 
         private void ReleaseUnmanagedResources()
@@ -35,7 +35,7 @@ namespace ESAPICommander.Commands
             ReleaseUnmanagedResources();
             if (disposing)
             {
-                Esapi.Dispose();
+                _esapi.Dispose();
             }
         }
 

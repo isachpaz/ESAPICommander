@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ESAPICommander.ArgumentConfig;
 using ESAPICommander.Commands;
-using ESAPICommander.Esapi;
 using ESAPICommander.Logger;
 using ESAPIX.Common;
 using NUnit.Framework;
@@ -25,11 +24,12 @@ namespace ESAPICommander.Tests
         [Test]
         public void Test_Run()
         {
-            var options = new DumpArgOptions() { PIZ = "123456Test" };
-            var commander = new DumpCommandDirector(options, EsapiManager.CreateFromSAC(
-                null), new LogConsole(DummyConsole));
-            var result = commander.Run();
-            Console.WriteLine(string.Join("\n", Repository));
+            //var options = new DumpArgOptions() { PIZ = "123456Test" };
+            //var commander = new DumpCommandDirector(options, EsapiManager.CreateFromSAC(
+            //    null), new LogConsole(DummyConsole));
+            //var result = commander.Run();
+            //Console.WriteLine(string.Join("\n", Repository));
+            Assert.True(false);
         }
     }
 }
