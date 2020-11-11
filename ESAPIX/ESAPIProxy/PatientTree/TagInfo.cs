@@ -1,6 +1,6 @@
 ﻿namespace ESAPIProxy
 {
-    public class Tag
+    public class TagInfo
     {
         // The actual object
         public int ParentID { get; set; }
@@ -8,7 +8,7 @@
 
         public string Description { get; set; }
 
-        public Tag(string description)
+        public TagInfo(string description)
         {
             Description = description;
         }

@@ -69,8 +69,11 @@
     <Compile Include="ESAPIManager.cs" />
     <Compile Include="Extensions\ProxyTools.cs" />
     <Compile Include="NullEsapiManager.cs" />
-    <Compile Include="PatientTree\PatientTag.cs" />
-    <Compile Include="PatientTree\Tag.cs" />
+    <Compile Include="PatientTree\ITreeVisitor.cs" />
+    <Compile Include="PatientTree\IVisitable.cs" />
+    <Compile Include="PatientTree\PatientTagInfo.cs" />
+    <Compile Include="PatientTree\PrintTree.cs" />
+    <Compile Include="PatientTree\TagInfo.cs" />
     <Compile Include="PatientTree\PatientInfoTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PatientTree\Node.cs" />

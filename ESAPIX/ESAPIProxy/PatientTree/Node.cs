@@ -2,18 +2,24 @@
 
 namespace ESAPIProxy
 {
-    public class Node
+    public class Node : IVisitable
     {
         public List<Node> Children = new List<Node>();
         public Node Parent { get; set; }
-        public Tag Source { get; set; }
+        public TagInfo TagInfo { get; set; }
 
         public override string ToString()
         {
-            return $"{nameof(Source)}: {Source}";
+            return $"{nameof(TagInfo)}: {TagInfo}";
         }
 
-        public static List<Node> BuildTreeAndGetRoots(List<Tag> actualObjects)
+        public void Accept(ITreeVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
+
+        public static List<Node> BuildTreeAndGetRoots(List<TagInfo> actualObjects)
         {
             var lookup = new Dictionary<int, Node>();
             var rootNodes = new List<Node>();
@@ -25,11 +31,11 @@ namespace ESAPIProxy
                 if (lookup.TryGetValue(item.ID, out ourNode))
                 {
                     // was already found as a parent - register the actual object
-                    ourNode.Source = item;
+                    ourNode.TagInfo = item;
                 }
                 else
                 {
-                    ourNode = new Node() {Source = item};
+                    ourNode = new Node() {TagInfo = item};
                     lookup.Add(item.ID, ourNode);
                 }
 
