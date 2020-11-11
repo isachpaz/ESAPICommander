@@ -4,10 +4,11 @@ namespace ESAPIProxy
 {
     public class Node : IVisitable
     {
-        public List<Node> Children = new List<Node>();
+        private List<Node> _children = new List<Node>();
         public Node Parent { get; set; }
         public TagInfo TagInfo { get; set; }
 
+        public IEnumerable<Node> GetChildren() => _children;
         public override string ToString()
         {
             return $"{nameof(TagInfo)}: {TagInfo}";
@@ -18,6 +19,10 @@ namespace ESAPIProxy
             visitor.Visit(this);
         }
 
+        public void AddChildren(Node node)
+        {
+            _children.Add(node);
+        }
 
         public static List<Node> BuildTreeAndGetRoots(List<TagInfo> actualObjects)
         {
@@ -56,17 +61,12 @@ namespace ESAPIProxy
                         lookup.Add(item.ParentID, parentNode);
                     }
 
-                    parentNode.Children.Add(ourNode);
+                    parentNode._children.Add(ourNode);
                     ourNode.Parent = parentNode;
                 }
             }
 
             return rootNodes;
-        }
-
-        public void AddChildren(Node node)
-        {
-            Children.Add(node);
         }
     }
 }

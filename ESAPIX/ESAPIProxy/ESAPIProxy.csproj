@@ -72,6 +72,7 @@
     <Compile Include="PatientTree\ITreeVisitor.cs" />
     <Compile Include="PatientTree\IVisitable.cs" />
     <Compile Include="PatientTree\PatientTagInfo.cs" />
+    <Compile Include="PatientTree\PatientTree.cs" />
     <Compile Include="PatientTree\PrintTree.cs" />
     <Compile Include="PatientTree\TagInfo.cs" />
     <Compile Include="PatientTree\PatientInfoTree.cs" />
