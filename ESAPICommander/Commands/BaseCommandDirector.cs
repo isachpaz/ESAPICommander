@@ -7,7 +7,7 @@ namespace ESAPICommander.Commands
 {
     public abstract class BaseCommandDirector : IDisposable
     {
-        private readonly ESAPIManager _esapi;
+        protected readonly ESAPIManager _esapi;
         protected readonly ILog _log;
 
         protected BaseCommandDirector(ESAPIManager esapi, ILog log)

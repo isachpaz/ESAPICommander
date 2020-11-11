@@ -68,5 +68,10 @@ namespace ESAPIProxy
 
             return rootNodes;
         }
+
+        public static Node FromTagInfo(TagInfo tagInfo)
+        {
+            return new Node(){TagInfo = tagInfo};
+        }
     }
 }

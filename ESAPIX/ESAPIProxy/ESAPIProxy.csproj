@@ -69,6 +69,7 @@
     <Compile Include="ESAPIManager.cs" />
     <Compile Include="Extensions\ProxyTools.cs" />
     <Compile Include="NullEsapiManager.cs" />
+    <Compile Include="PatientTree\CourseTagInfo.cs" />
     <Compile Include="PatientTree\ITreeVisitor.cs" />
     <Compile Include="PatientTree\IVisitable.cs" />
     <Compile Include="PatientTree\PatientTagInfo.cs" />

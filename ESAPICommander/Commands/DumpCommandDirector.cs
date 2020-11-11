@@ -4,6 +4,7 @@ using ESAPICommander.ArgumentConfig;
 using ESAPICommander.Interfaces;
 using ESAPICommander.Logger;
 using ESAPIProxy;
+using ESAPIX.Facade.API;
 
 
 namespace ESAPICommander.Commands
@@ -30,7 +31,18 @@ namespace ESAPICommander.Commands
                 _log.AddInfo($"Patient with PIZ={_options.PIZ} found.");
             }
 
-            
+            var patient = _esapi.GetPatient();
+            PatientTree pt = PatientTree.Initialize(patient.Id);
+
+            var courses = _esapi.GetCourses();
+            foreach (Course course in courses)
+            {
+                pt.AddNodeFromTagInfo(new CourseTagInfo(course.Id));
+                foreach (var VARIABLE in _esapi.GetPlansByCourseId(course.Id))
+                {
+                    
+                }
+            }
 
             return 0;
         }

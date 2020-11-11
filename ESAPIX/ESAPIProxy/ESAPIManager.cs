@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,16 +96,16 @@ namespace ESAPIProxy
             Dispose(false);
         }
 
-        public IEnumerable<E.Course> GetCourse()
+        public IEnumerable<E.Course> GetCourses()
         {
             return _thread.GetValue(ctx =>
             {
                 var ss = ctx.Course.PlanSetups;
                 var courses = ctx.Patient?.Courses;
-                var list = new List<E.Course>();
+                var xcourses = new List<E.Course>();
                 foreach (var item in courses)
                 {
-                    var ps = new E.Course()
+                    var xCourse = new E.Course()
                     {
                         Id = item.Id,
                         Patient = new E.Patient()
@@ -112,18 +113,32 @@ namespace ESAPIProxy
                             Id = item.Patient.Id, FirstName = item.Patient.FirstName, LastName = item.Patient.LastName
                         },
                     };
-
-                    var planSetups = new List<E.PlanSetup>();
-                    foreach (V.PlanSetup planSetup in item.PlanSetups)
-                    {
-                        var newPlanSetup = new E.PlanSetup();
-                        planSetups.Add(newPlanSetup);
-                    }
-
-                    list.Add(ps);
+                    xcourses.Add(xCourse);
                 }
 
-                return list;
+                return xcourses;
+            });
+        }
+
+        public IEnumerable<E.PlanSetup> GetPlansByCourseId(string courseId)
+        {
+            return _thread.GetValue(ctx =>
+            {
+                var courses = ctx.Patient?.Courses.Where(c => c.Id == courseId);
+                var xPlans = new List<E.PlanSetup>();
+                foreach (var course in courses)
+                {
+                    foreach (var item in course.PlanSetups)
+                    {
+                        var xPlan = new E.PlanSetup()
+                        {
+                            Id = item.Id,
+                            TotalDose = item.TotalDose,
+                            NumberOfFractions = item.NumberOfFractions
+                        };
+                    }
+                }
+                return xPlans;
             });
         }
     }

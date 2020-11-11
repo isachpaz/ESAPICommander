@@ -26,7 +26,7 @@ namespace ExplorerConsoleApp
             Debug.WriteLine($"Total # of patients = {patientSummaries.Count}");
 
             var isPatientOpened = em.OpenPatientbyId(patientSummaries.FirstOrDefault(x=>x.Id.Contains("Prostata_")).Id);
-            var courses = em.GetCourse();
+            var courses = em.GetCourses();
 
 
             em.Dispose();
