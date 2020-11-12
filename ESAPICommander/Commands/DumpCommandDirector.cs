@@ -31,16 +31,18 @@ namespace ESAPICommander.Commands
                 _log.AddInfo($"Patient with PIZ={_options.PIZ} found.");
             }
 
+            _esapi.OpenPatientbyId(_options.PIZ);
             var patient = _esapi.GetPatient();
             PatientTree pt = PatientTree.Initialize(patient.Id);
 
             var courses = _esapi.GetCourses();
-            foreach (Course course in courses)
+            foreach (var course in courses)
             {
+                Console.WriteLine($"course:{course.Id}");
                 pt.AddNodeFromTagInfo(new CourseTagInfo(course.Id));
-                foreach (var VARIABLE in _esapi.GetPlansByCourseId(course.Id))
+                foreach (var ps in _esapi.GetPlansByCourseId(course.Id))
                 {
-                    
+                    Console.WriteLine("\t"+ps.Id);   
                 }
             }
 

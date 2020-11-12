@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESAPICommander", "ESAPICommander.csproj", "{DD32CF09-F88F-4BB2-9C5D-4E1F04D6F744}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7AC258C-F322-4D66-B6CB-F45A274B3A8E} = {F7AC258C-F322-4D66-B6CB-F45A274B3A8E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESAPICommander.Tests", "..\ESAPICommander.Tests\ESAPICommander.Tests.csproj", "{E779E47F-1F41-4CD0-9F9D-77832ECECBE2}"
 EndProject
@@ -63,8 +66,8 @@ Global
 		{78C12383-33B9-48E6-A128-CD9B930C804C}.Release|x64.Build.0 = Release|x64
 		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Debug|x64.Build.0 = Debug|Any CPU
+		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Debug|x64.ActiveCfg = Debug|x64
+		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Debug|x64.Build.0 = Debug|x64
 		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2A7CEC5-F7C4-4EDB-9603-C20088EC34C3}.Release|x64.ActiveCfg = Release|Any CPU

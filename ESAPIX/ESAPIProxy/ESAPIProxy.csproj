@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="ESAPIManager.cs" />
     <Compile Include="Extensions\ProxyTools.cs" />
+    <Compile Include="MObjects\MCourse.cs" />
+    <Compile Include="MObjects\MPatient.cs" />
     <Compile Include="NullEsapiManager.cs" />
     <Compile Include="PatientTree\CourseTagInfo.cs" />
     <Compile Include="PatientTree\ITreeVisitor.cs" />

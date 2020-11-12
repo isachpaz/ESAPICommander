@@ -1,5 +1,4 @@
-﻿
-using ESAPICommander.ArgumentConfig;
+﻿using ESAPICommander.ArgumentConfig;
 using System;
 using CommandLine;
 using System.Collections.Generic;
@@ -21,34 +20,35 @@ namespace ESAPICommander
 {
     class Program
     {
-        private static ESAPIManager _esapiManager;
-
         //[STAThread]
         static int Main(string[] args)
         {
             try
             {
-                var app = VMS.TPS.Common.Model.API.Application.CreateApplication();
-                _esapiManager = ESAPIManager.CreateEsapiThreadDefault(()=>app);
-
-                return CommandLine.Parser.Default.ParseArguments<DumpArgOptions, PointsstructureArgOptions, DvhArgOptions>(args)
+                return CommandLine.Parser.Default
+                    .ParseArguments<DumpArgOptions, PointsstructureArgOptions, DvhArgOptions>(args)
                     .MapResult(
                         (PointsstructureArgOptions opts) => RunPointsstructure(opts),
                         (DvhArgOptions opts) => RunDvh(opts),
                         (DumpArgOptions opts) => RunDump(opts),
                         errs => 1
-                     );
+                    );
             }
             catch (Exception e)
             {
                 Console.Error.WriteLine(e.ToString());
                 return -1;
             }
+            finally
+            {
+                
+            }
         }
 
         private static int RunDump(DumpArgOptions opts)
         {
-            var ed = CommandDirectorFactory.CreateDump(opts, _esapiManager);
+            var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
+            var ed = CommandDirectorFactory.CreateDump(opts, esapiManager);
             var errorCode = ed.Run();
             ed.Dispose();
             return errorCode;

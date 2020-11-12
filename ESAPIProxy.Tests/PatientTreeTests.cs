@@ -62,7 +62,7 @@ namespace ESAPIProxy.Tests
             planSums.AddChildren(planSum1);
             planSums.AddChildren(planSum2);
 
-            PrintTree printOut = new PrintTree();
+            PrintTreeVisitor printOut = new PrintTreeVisitor();
             foreach (var node in tree)
             {
                 node.Accept(printOut);
