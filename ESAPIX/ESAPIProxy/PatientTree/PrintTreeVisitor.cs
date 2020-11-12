@@ -3,7 +3,7 @@ using System.Text;
 
 namespace ESAPIProxy
 {
-    public class PrintTree : ITreeVisitor
+    public class PrintTreeVisitor : ITreeVisitor
     {
         private StringBuilder TextBuilder { get; } = new StringBuilder();
         private int Indent { get; set; } = 0;

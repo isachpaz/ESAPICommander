@@ -74,7 +74,7 @@
     <Compile Include="PatientTree\IVisitable.cs" />
     <Compile Include="PatientTree\PatientTagInfo.cs" />
     <Compile Include="PatientTree\PatientTree.cs" />
-    <Compile Include="PatientTree\PrintTree.cs" />
+    <Compile Include="PatientTree\PrintTreeVisitor.cs" />
     <Compile Include="PatientTree\TagInfo.cs" />
     <Compile Include="PatientTree\PatientInfoTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
