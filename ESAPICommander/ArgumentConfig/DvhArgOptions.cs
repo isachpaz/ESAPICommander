@@ -7,7 +7,8 @@ namespace ESAPICommander.ArgumentConfig
     [Verb("dvh", HelpText = "DVH export")]
     public class DvhArgOptions
     {
-        
+        public string PIZ;
+
         [Option('o', "dvhfile", Required = true, HelpText = "Output dvh file.")]
         public string DvhFile { get; set; }
 

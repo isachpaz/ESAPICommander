@@ -10,16 +10,25 @@ namespace ESAPICommander.Commands
         private PointsstructureArgOptions _options;
 
         public PointsstructureCommandDirector(PointsstructureArgOptions options, ESAPIManager esapi, ILog log) :
-            base(esapi, log)
+            base(esapi, log, options.PIZ)
         {
             _options = options;
         }
 
-        public override int Run()
+        public override void Run()
         {
 
-            return 0;
+            
         }
 
+        public override void ProcessRequest()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void PostProcess()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

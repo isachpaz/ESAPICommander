@@ -47,11 +47,19 @@ namespace ESAPICommander
 
         private static int RunDump(DumpArgOptions opts)
         {
-            var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
-            var ed = CommandDirectorFactory.CreateDump(opts, esapiManager);
-            var errorCode = ed.Run();
-            ed.Dispose();
-            return errorCode;
+            try
+            {
+                var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
+                var ed = CommandDirectorFactory.CreateDump(opts, esapiManager);
+                ed.Run();
+                ed.Dispose();
+                return 0;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            
         }
 
         private static int RunDvh(DvhArgOptions opts)

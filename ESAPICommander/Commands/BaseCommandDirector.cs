@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
+using System.Windows;
 using ESAPIProxy;
 using ESAPICommander.Logger;
 
@@ -9,16 +11,34 @@ namespace ESAPICommander.Commands
     {
         protected readonly ESAPIManager _esapi;
         protected readonly ILog _log;
+        private readonly string _piz;
 
-        protected BaseCommandDirector(ESAPIManager esapi, ILog log)
+        protected BaseCommandDirector(ESAPIManager esapi, ILog log, string piz)
         {
             _esapi = esapi;
             _log = log;
+            _piz = piz;
         }
 
-        
 
-        public abstract int Run();
+        public void LoadPatientOrThrowException()
+        {
+            if (!_esapi.OpenPatientbyId(_piz))
+            { 
+                throw new Exception($"Patient: {_piz} cannot be found.");
+            }
+        }
+
+        public virtual void Run()
+        {
+            LoadPatientOrThrowException();
+            ProcessRequest();
+            PostProcess();
+        }
+
+        public abstract void ProcessRequest();
+        public abstract void PostProcess();
+        
 
         public bool IsPIZAvailable(string piz)
         {
