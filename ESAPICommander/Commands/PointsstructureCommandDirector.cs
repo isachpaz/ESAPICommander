@@ -23,8 +23,17 @@ namespace ESAPICommander.Commands
 
         public override void ProcessRequest()
         {
-            var patient = _esapi.GetPatient();
-            _results = _esapi.ExtractStructurePoints(_options.Course, _options.Plan, _options.Structures.ToArray());
+            try
+            {
+                var patient = _esapi.GetPatient();
+                _results = _esapi.ExtractStructurePoints(_options.Course, _options.Plan, _options.Structures.ToArray());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+          
         }
 
         public override void PostProcess()
@@ -46,7 +55,7 @@ namespace ESAPICommander.Commands
                     };
 
                     using (System.IO.StreamWriter file =
-                        new System.IO.StreamWriter(_options.File))
+                        new System.IO.StreamWriter(_options.File.Trim('\n','\r')))
                     {
                         file.AutoFlush = true;
                         file.WriteLine(

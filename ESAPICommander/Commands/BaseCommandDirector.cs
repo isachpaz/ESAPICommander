@@ -43,11 +43,6 @@ namespace ESAPICommander.Commands
                 Console.WriteLine(e);
                 throw;
             }
-            finally
-            {
-                _esapi.Dispose();
-            }
-            
         }
 
         public abstract void ProcessRequest();
