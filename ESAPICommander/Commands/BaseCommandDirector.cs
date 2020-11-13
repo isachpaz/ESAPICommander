@@ -27,13 +27,27 @@ namespace ESAPICommander.Commands
             { 
                 throw new Exception($"Patient: {_piz} cannot be found.");
             }
+            _log.AddInfo($"Patient PIZ={_piz} opened.");
         }
 
         public virtual void Run()
         {
-            LoadPatientOrThrowException();
-            ProcessRequest();
-            PostProcess();
+            try
+            {
+                LoadPatientOrThrowException();
+                ProcessRequest();
+                PostProcess();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                _esapi.Dispose();
+            }
+            
         }
 
         public abstract void ProcessRequest();

@@ -5,5 +5,10 @@
         public StructureSetTagInfo(string description) : base(description)
         {
         }
+
+        public override string ToString()
+        {
+            return $"StructureSet: {base.ToString()}";
+        }
     }
 }

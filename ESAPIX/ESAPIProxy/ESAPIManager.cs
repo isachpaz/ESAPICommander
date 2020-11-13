@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ESAPIProxy.MObjects;
 using EC = ESAPIX.Common;
 using E = ESAPIX.Facade.API;
 using V = VMS.TPS.Common.Model.API;
@@ -15,7 +14,7 @@ namespace ESAPIProxy
     {
         private readonly EC.AppComThread _thread;
 
-        protected ESAPIManager(ESAPIX.Common.AppComThread _thread)
+        protected ESAPIManager(EC.AppComThread _thread)
         {
             this._thread = _thread;
         }
@@ -48,7 +47,11 @@ namespace ESAPIProxy
         {
             return _thread.GetValue(ctx =>
             {
-                var patient = new E.Patient() {Name = ctx.CurrentUser.Name, Id = ctx.CurrentUser.Id};
+                var patient = new E.Patient()
+                {
+                    Name = ctx.Patient.Name,
+                    Id = ctx.Patient.Id,
+                };
                 return patient;
             });
         }
@@ -102,23 +105,21 @@ namespace ESAPIProxy
             var courseNames = _thread.GetValue(ctx =>
             {
                 var courses = ctx.Patient?.Courses;
-                //List<MCourse> xCourses = new List<MCourse>();
                 List<E.Course> xCourses = new List<E.Course>();
                 foreach (V.Course item in courses)
                 {
-                    Console.WriteLine(item.Id);
                     dynamic mc = new E.Course(item);
                     xCourses.Add(mc);
                 }
+
                 return xCourses;
             });
-           
+
             return courseNames;
         }
 
         public IEnumerable<E.PlanSetup> GetPlansByCourseId(string courseId)
         {
-            
             return _thread.GetValue(ctx =>
             {
                 var courses = ctx.Patient?.Courses.Where(c => c.Id == courseId);
@@ -128,12 +129,10 @@ namespace ESAPIProxy
                     foreach (var item in course.PlanSetups)
                     {
                         var xPlan = new E.PlanSetup(item);
-                        //xPlan.Id = item.Id;
-                        //xPlan.TotalDose = item.TotalDose;
-                        //xPlan.NumberOfFractions = item.NumberOfFractions;
                         xPlans.Add(xPlan);
                     }
                 }
+
                 return xPlans;
             });
         }

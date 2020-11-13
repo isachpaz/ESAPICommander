@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using ESAPICommander.ArgumentConfig;
 using ESAPICommander.Interfaces;
@@ -15,32 +16,23 @@ namespace ESAPICommander.Commands
     public class DumpCommandDirector : BaseCommandDirector
     {
         private DumpArgOptions _options;
+        private PatientTree _patientTree;
 
         public DumpCommandDirector(DumpArgOptions options, ESAPIManager esapi, ILog log) : base(esapi, log, options.PIZ)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public override void Run()
+       
+        public override void ProcessRequest()
         {
-            if (!IsPIZAvailable(_options.PIZ))
-            {
-                _log.AddInfo($"Patient with PIZ={_options.PIZ} cannot be found...");
-                _log.AddInfo("Process stopped.");
-            }
-            else
-            {
-                _log.AddInfo($"Patient with PIZ={_options.PIZ} found.");
-            }
-
-            
             var patient = _esapi.GetPatient();
-            PatientTree pt = PatientTree.Initialize(patient.Id);
+            _patientTree = PatientTree.Initialize(patient.Id);
 
             var courses = _esapi.GetCourses();
             foreach (var course in courses)
             {
-                Node courseNode = pt.AddCourseTagInfoByName(course.Id);
+                Node courseNode = _patientTree.AddCourseTagInfoByName(course.Id);
                 foreach (var ps in _esapi.GetPlansByCourseId(course.Id))
                 {
                     var planNode = Node.FromTagInfo(new PlanSetupTagInfo(ps.Id));
@@ -55,17 +47,13 @@ namespace ESAPICommander.Commands
                     }
                 }
             }
-
-        }
-
-        public override void ProcessRequest()
-        {
-            _log.AddInfo("ProcessRequest ...");
         }
 
         public override void PostProcess()
         {
-            _log.AddInfo("Postprocess ...");
+            PrintTreeVisitor printOut = new PrintTreeVisitor();
+            _patientTree.GetRoot().Accept(printOut);
+            Console.WriteLine(printOut.GetOutput());
         }
     }
 }

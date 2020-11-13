@@ -15,7 +15,7 @@
 
         public override string ToString()
         {
-            return $"{nameof(ParentID)}: {ParentID}, {nameof(ID)}: {ID}, {nameof(Description)}: {Description}";
+            return $"{Description}";
         }
     }
 }

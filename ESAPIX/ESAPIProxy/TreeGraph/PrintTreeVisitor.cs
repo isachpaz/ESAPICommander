@@ -10,7 +10,7 @@ namespace ESAPIProxy
 
         public void Visit(Node node)
         {
-            TextBuilder.AppendLine($"{GetTabs()}{node.TagInfo.Description}");
+            TextBuilder.AppendLine($"{GetTabs()}{node.TagInfo}");
             foreach (var child in node.GetChildren())
             {
                 Indent++;

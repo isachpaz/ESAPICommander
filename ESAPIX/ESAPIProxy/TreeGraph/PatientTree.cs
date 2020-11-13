@@ -1,4 +1,7 @@
-﻿namespace ESAPIProxy.PatientTree
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace ESAPIProxy.PatientTree
 {
     public class PatientTree
     {
@@ -27,5 +30,8 @@
             _rootNode.AddChildren(courseNode);
             return courseNode;
         }
+
+        public Node GetRoot() => _rootNode;
+
     }
 }

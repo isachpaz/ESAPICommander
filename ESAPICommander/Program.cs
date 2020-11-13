@@ -31,7 +31,7 @@ namespace ESAPICommander
                         (PointsstructureArgOptions opts) => RunPointsstructure(opts),
                         (DvhArgOptions opts) => RunDvh(opts),
                         (DumpArgOptions opts) => RunDump(opts),
-                        errs => 1
+                        errs => -1
                     );
             }
             catch (Exception e)
@@ -47,9 +47,10 @@ namespace ESAPICommander
 
         private static int RunDump(DumpArgOptions opts)
         {
+            var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
             try
             {
-                var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
+                
                 var ed = CommandDirectorFactory.CreateDump(opts, esapiManager);
                 ed.Run();
                 ed.Dispose();
@@ -59,7 +60,6 @@ namespace ESAPICommander
             {
                 return -1;
             }
-            
         }
 
         private static int RunDvh(DvhArgOptions opts)
