@@ -20,7 +20,7 @@ namespace ESAPICommander
 {
     class Program
     {
-        //[STAThread]
+        [STAThread]
         static int Main(string[] args)
         {
             try
@@ -64,12 +64,36 @@ namespace ESAPICommander
 
         private static int RunDvh(DvhArgOptions opts)
         {
-            throw new NotImplementedException();
+            var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
+            try
+            {
+
+                var ed = CommandDirectorFactory.CreateDVHExporter(opts, esapiManager);
+                ed.Run();
+                ed.Dispose();
+                return 0;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         private static int RunPointsstructure(PointsstructureArgOptions opts)
         {
-            throw new NotImplementedException();
+            var esapiManager = ESAPIManager.CreateEsapiThreadDefault(() => Application.CreateApplication());
+            try
+            {
+
+                var ed = CommandDirectorFactory.CreatePointsStructure(opts, esapiManager);
+                ed.Run();
+                ed.Dispose();
+                return 0;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
     }
 }

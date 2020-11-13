@@ -9,7 +9,7 @@ namespace ESAPICommander.ArgumentConfig
     {
         public override string ToString()
         {
-            return $"{nameof(PIZ)}: {PIZ}, {nameof(Course)}: {Course}, {nameof(Plan)}: {Plan}, {nameof(Structure)}: {Structure}, {nameof(Structures)}: {string.Join(", ", Structures)}, {nameof(Verbose)}: {Verbose}";
+            return $"{nameof(PIZ)}: {PIZ}, {nameof(Course)}: {Course}, {nameof(Plan)}: {Plan}, {nameof(Structures)}: {string.Join(", ", Structures)}, {nameof(Verbose)}: {Verbose}";
         }
 
         [Option('z', "PIZ", Required = true, HelpText = "Patient PIZ number")]
@@ -23,12 +23,11 @@ namespace ESAPICommander.ArgumentConfig
         [Option('p', "plan", Required = true, HelpText = "Plan name")]
         public string Plan { get; set; }
 
-
-        [Option('s', "structure", Required = false, Group = "structure", HelpText = "Structure name")]
-        public string Structure { get; set; }
-
-        [Option('m', "structures", Required = false, Group = "structure", HelpText = "Structure names")]
+        [Option('s', "structures", Required = true, HelpText = "Structure names")]
         public IEnumerable<string> Structures { get; set; }
+
+        [Option('o', "outputfile", Required = false, HelpText = "Write to csv file")]
+        public string File { get; set; }
 
         [Usage(ApplicationAlias = "ESAPICommander")]
         public static IEnumerable<Example> Examples
@@ -38,7 +37,7 @@ namespace ESAPICommander.ArgumentConfig
                 return new List<Example>()
                 {
                     new Example("Export dose voxel points for a structure",
-                        new PointsstructureArgOptions {PIZ = "1234567", Structure = "prostate gland", Plan = "plan1", Course = "C1"})
+                        new PointsstructureArgOptions {PIZ = "1234567", Structures = new[]{"prostate gland"}, Plan = "plan1", Course = "C1"})
                 };
             }
         }

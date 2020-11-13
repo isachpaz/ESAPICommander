@@ -8,11 +8,6 @@ namespace ESAPICommander.Commands
     {
         private readonly DvhArgOptions _options;
 
-        public override void Run()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void ProcessRequest()
         {
             throw new System.NotImplementedException();
