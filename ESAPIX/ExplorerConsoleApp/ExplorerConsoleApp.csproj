@@ -78,10 +78,6 @@
       <Project>{7873c99b-88c8-4a7e-968f-f33577974f39}</Project>
       <Name>ESAPIProxy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ESAPIX\ESAPIX.15.5.csproj">
-      <Project>{7a7e4361-6b86-405f-9a81-810e258381dd}</Project>
-      <Name>ESAPIX.15.5</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
