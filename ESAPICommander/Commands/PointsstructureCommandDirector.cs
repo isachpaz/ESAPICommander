@@ -36,11 +36,16 @@ namespace ESAPICommander.Commands
           
         }
 
+        public bool IsFileOptionSet()
+        {
+            return String.IsNullOrEmpty(_options.File);
+        }
+
         public override void PostProcess()
         {
             Action<List<VoxelData>> writeOutput = null;
 
-            if (String.IsNullOrEmpty(_options.File))
+            if (!IsFileOptionSet())
             {
                 writeOutput = results => results.ForEach(Console.WriteLine);
             }
