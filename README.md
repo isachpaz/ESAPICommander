@@ -8,11 +8,11 @@ Windows Console application for data mining with the help of VARIAN ESAPI.
   - dvh
   
 ### Examples
-1/ Print out the "Course" tree of a patient
+#### Print out the "Course" tree of a patient
 
->ESAPICommander.exe dumo -z 1234567id
+>ESAPICommander.exe dump -z 1234567id
 
-2/ Get the list of dose grid points, that are inside/included by a structure
+#### Get the list of dose grid points, that are inside/included by a structure
 
->ESAPICommander.exe dumo -z 1234567id -c courseId -p planId -s GTV, PTV -o export.csv
+>ESAPICommander.exe pointsstructure -z 1234567id -c courseId -p planId -s GTV, PTV -o export.csv
 
