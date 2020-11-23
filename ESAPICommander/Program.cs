@@ -23,8 +23,16 @@ namespace ESAPICommander
         [STAThread]
         static int Main(string[] args)
         {
+            var spinner = new Spinner(10, 10);
+
+            // Do your work here instead of sleeping...
+            //Thread.Sleep(10000);
+
+            
+
             try
             {
+                spinner.Start();
                 return CommandLine.Parser.Default
                     .ParseArguments<DumpArgOptions, PointsstructureArgOptions, DvhArgOptions>(args)
                     .MapResult(
@@ -41,7 +49,7 @@ namespace ESAPICommander
             }
             finally
             {
-                
+                spinner.Stop();
             }
         }
 
