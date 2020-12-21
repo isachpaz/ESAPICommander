@@ -38,7 +38,7 @@ namespace ESAPICommander.Commands
 
         public bool IsFileOptionSet()
         {
-            return String.IsNullOrEmpty(_options.File);
+            return !String.IsNullOrEmpty(_options.File);
         }
 
         public override void PostProcess()
