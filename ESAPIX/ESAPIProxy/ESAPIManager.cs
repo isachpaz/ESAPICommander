@@ -173,6 +173,7 @@ namespace ESAPIProxy
                     }
                 }
             }
+
             return structures;
         }
 
@@ -251,7 +252,7 @@ namespace ESAPIProxy
                                                 //var doseAt = dose.GetDoseToPoint(dp);
                                                 //Console.WriteLine($" {structure.StructureId} -> ({x}, {y}, {z}) {voxelDose_1}");
 
-                                                
+
                                                 //Trace.WriteLine(b);
                                                 VoxelData v = new VoxelData
                                                 {
@@ -273,7 +274,6 @@ namespace ESAPIProxy
                                                     XDirection = plan.Dose.XDirection,
                                                     YDirection = plan.Dose.YDirection,
                                                     ZDirection = plan.Dose.ZDirection,
-                                                    
                                                 };
                                                 vc.Add(v);
                                             }
@@ -286,6 +286,29 @@ namespace ESAPIProxy
                 }
 
                 return vc;
+            });
+        }
+
+        public List<string> ExtractDVHs(string courseId,
+            string planSetupId,
+            string[] roiNames)
+        {
+            return _thread.GetValue(ctx =>
+            {
+                var courses = ctx.Patient.Courses.Where(x => x.Id == courseId);
+                var structures = GetStructuresByNames(ctx, roiNames, courseId, planSetupId);
+
+                foreach (var courseItem in courses)
+                {
+                    var plan = courseItem.PlanSetups.FirstOrDefault(p => p.Id == planSetupId);
+                    plan.DoseValuePresentation = DoseValuePresentation.Absolute;
+
+                    foreach (var structure in structures)
+                    {
+                    }
+                }
+
+                return new List<string>();
             });
         }
     }
